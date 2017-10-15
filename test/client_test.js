@@ -45,4 +45,24 @@ describe('Kala Client basic operations', () => {
             done();
         });
     });
+
+    it('deletes a job', done => {
+        new Promise((resolve, reject) => {
+            let start = new Date();
+            start.setDate(start.getHours() + 24);
+            kala.createJob({
+                name: 'stuff',
+                command: '/bin/true',
+                schedule: new Kala.Schedule(null, start, 'PT15S').toString(),
+            }, (_, res) => {
+                resolve(res.body);
+            });
+        })
+        .then(job => {
+            kala.deleteJob(job.id, (err, res) => {
+                assert.equal(res.statusCode, 204);
+                done();
+            });
+        });
+    });
 });
