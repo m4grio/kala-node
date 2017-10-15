@@ -131,4 +131,13 @@ describe('Kala Client basic operations', () => {
             });
         });
     });
+
+    it('retrieves stats', done => {
+        let start = new Date();
+        kala.getStats((err, res) => {
+            assert.equal(err, undefined);
+            assert(res.body.hasOwnProperty('Stats'));
+            done();
+        });
+    });
 });
