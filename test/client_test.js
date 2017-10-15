@@ -38,4 +38,11 @@ describe('Kala Client basic operations', () => {
             });
         });
     });
+
+    it('retrieves all jobs', (done) => {
+        kala.getJobs((err, res) => {
+            assert(res.body.hasOwnProperty('jobs'));
+            done();
+        });
+    });
 });
