@@ -87,4 +87,26 @@ describe('Kala Client basic operations', () => {
             });
         });
     });
+
+    it('starts a job', done => {
+        new Promise((resolve, reject) => {
+            let start = new Date();
+            start.setDate(start.getHours() + 48);
+            kala.createJob({
+                name: 'stuff',
+                command: '/bin/true',
+                schedule: new Kala.Schedule(null, start, 'PT15S').toString(),
+            }, (err, res) => {
+                assert.equal(err, undefined);
+                resolve(res.body);
+            });
+        })
+        .then(job => {
+            kala.startJob(job.id, (err, res) => {
+                assert.equal(err, undefined);
+                assert.equal(res.statusCode, 204);
+                done();
+            });
+        });
+    });
 });
