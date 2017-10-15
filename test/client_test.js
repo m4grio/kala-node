@@ -26,7 +26,8 @@ describe('Kala Client basic operations', () => {
                 name: 'stuff',
                 command: '/bin/true',
                 schedule: new Kala.Schedule(null, start, 'PT15S').toString(),
-            }, (_, res) => {
+            }, (err, res) => {
+                assert.equal(err, undefined);
                 resolve(res.body);
             });
         })
@@ -54,12 +55,14 @@ describe('Kala Client basic operations', () => {
                 name: 'stuff',
                 command: '/bin/true',
                 schedule: new Kala.Schedule(null, start, 'PT15S').toString(),
-            }, (_, res) => {
+            }, (err, res) => {
+                assert.equal(err, undefined);
                 resolve(res.body);
             });
         })
         .then(job => {
             kala.deleteJob(job.id, (err, res) => {
+                assert.equal(err, undefined);
                 assert.equal(res.statusCode, 204);
                 done();
             });
