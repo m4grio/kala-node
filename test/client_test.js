@@ -143,4 +143,32 @@ describe('Kala Client basic operations', () => {
             done();
         });
     });
+
+    /**
+     * This is ugly.
+     *
+     * @todo use promises here
+     */
+    it('deletes all jobs', done => {
+        let start = new Date();
+        start.setDate(start.getHours() + 48);
+        kala.createJob({
+            name: 'stuff',
+            command: '/bin/true',
+            schedule: new Kala.Schedule(null, start, 'PT15S').toString(),
+        }, (err, res) => {
+            assert.equal(err, undefined);
+            kala.getJobs((err, res) => {
+                assert.notEqual(Object.keys(res.body.jobs).length, 0);
+                kala.deleteAll((err, res) => {
+                    assert.equal(err, undefined);
+                    assert.equal(res.statusCode, 204);
+                    kala.getJobs((err, res) => {
+                        assert.equal(Object.keys(res.body.jobs).length, 0);
+                        done();
+                    });
+                });
+            });
+        });
+    });
 });
