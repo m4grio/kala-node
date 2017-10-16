@@ -1,6 +1,6 @@
 {
   "name": "kala-node",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "description": "Kala client for Node.js",
   "repository": "git@github.com:m4grio/kala-node.git",
   "main": "lib/index.js",
