@@ -5,7 +5,7 @@ up:
 	docker-compose up -d
 
 test: install up
-	npm run test
+	mocha
 
 install:
 	npm install --dev

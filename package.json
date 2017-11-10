@@ -7,9 +7,6 @@
   "files": [
     "lib"
   ],
-  "scripts": {
-    "test": "mocha"
-  },
   "keywords": [
     "kala",
     "scheduler",
