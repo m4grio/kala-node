@@ -7,7 +7,7 @@ up:
 check:
 	standard
 
-test: install up
+test: install check up
 	mocha
 
 install:
