@@ -4,6 +4,9 @@ PATH := node_modules/.bin:$(PATH)
 up:
 	docker-compose up -d
 
+check:
+	standard
+
 test: install up
 	mocha
 

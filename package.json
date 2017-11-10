@@ -15,6 +15,7 @@
   "author": "Mario Alvarez <ahoy@m4grio.me>",
   "license": "MIT",
   "dependencies": {
+    "standard": "^10.0.3",
     "papi": "^0.27.0"
   },
   "devDependencies": {
