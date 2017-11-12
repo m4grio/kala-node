@@ -11,7 +11,8 @@ test: install check up
 	mocha
 
 install:
-	npm install --dev
+	npm install
+	npm install --only=dev
 	docker-compose build
 
 clean:
